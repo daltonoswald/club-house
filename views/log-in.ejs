@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log in</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+<body>
+    <%- include('./partials/nav.ejs') %>
+    <div class="main">
+        <h1>Please Log in</h1>
+        <form action="/log-in" method="POST" class="log-in-form">
+            <label for="username">Username</label>
+            <input name="username" placeholder="Username" type="text" />
+            <label for="password">Password</label>
+            <input name="password" type="password" />
+            <div class="log-in-button">
+                <button class="button">Log in</button>
+            </div>
+        </form>
+        <% if (message) { %>
+            <div class="errorMessages">
+                <p><%= message %></p>
+            </div>
+        <% } %>
+    </div>
+</body>
+</html>

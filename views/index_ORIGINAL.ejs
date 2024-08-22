@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+      <%- include('./partials/nav.ejs') %>
+      <div class="main">
+        <h1><%= title %></h1>
+        <p>Welcome to the <%= title %>
+        <div class="message-container">
+          <% messages.forEach(function(message) {%>
+          <div class="message">
+          <div class="message-info">
+            <% if (!user) { %>
+              <p class="message-author">Anonymous</p>
+            <% } else if (!user.isMember) { %>
+              <p class="message-author">Club Member</p>
+            <% } else { %>
+              <a href="<%=message.author.url %>"><p class="message-author"><%= message.author.username %></p></a>
+            <% } %>
+            <p><%= message.date_formatted %></p>
+          </div>
+          <div class="message-content">
+            <h3 class="message-title"><%= message.title %></h3>
+            <p class="message-text"><%= message.text %></p>
+          </div>
+          <% if (user && user.isAdmin) { %>
+            <div class="delete-button">
+              <a href="<%= '/delete-message/' + message._id %>" class="button">Delete</a>
+            </div>
+        <% } %>
+        </div>
+        <% })%>
+    </div>
+  </body>
+</html>

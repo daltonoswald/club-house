@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join the Club</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+<body>
+    <%- include('./partials/nav.ejs') %>
+    <div class="main">
+        <h1>Join the Club</h1>
+        <form class="join-club-form" action="/join-club" method="POST">
+            <label for="passcode">Passcode</label>
+            <input type="text" name="passcode" placeholder="Passcode" type="text" />
+            <div class="join-club-button">
+                <button class="button">Join the Club</button>
+            </div>
+        </form>
+        <% if (typeof error !== 'undefined') {%>
+        <ul>
+            <li>Wrong passcode</li>
+        </ul>
+        <%}%>
+    </div>
+</body>
+</html>
