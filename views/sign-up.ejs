@@ -10,7 +10,7 @@
     <%- include('./partials/nav.ejs') %>
     <div class="main">
         <h1>Sign up</h1>
-        <form action="/sign-up" method="POST" class="sign-up-form">
+        <form action="/users/sign-up" method="POST" class="sign-up-form">
             <label for="first_name">First Name</label>
             <input type="text" name="first_name" placeholder="First Name" type="text" />
             <label for="last_name">Last Name</label>
@@ -25,6 +25,12 @@
                 <button class="button">Sign up</button>
             </div>
         </form>
+        <% if (message) { %>
+            <div class="errorMessages">
+                <!-- <p><%= errors.msg %></p> -->
+                <p><%= message %></p>
+            </div>
+        <% } %>
     </div>
 </body>
 </html>

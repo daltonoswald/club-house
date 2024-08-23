@@ -12,13 +12,13 @@
       </div>
       <div class="right">
         <a href="<%=user.url %>"><p class="username"> <%= user.username %></p></a>
-        <a href="logout" class="button">Logout</a>
+        <a href="/users/logout" class="button">Logout</a>
       </div>
     <% } else { %>
     </div>
       <div class="right">
-      <a href="/log-in" class="button">Log in</a>
-      <a href="/sign-up" class="button">Sign up</a>
+      <a href="/users/log-in" class="button">Log in</a>
+      <a href="/users/sign-up" class="button">Sign up</a>
     </div>
     <% } %>
     
