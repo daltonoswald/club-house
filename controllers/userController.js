@@ -10,11 +10,7 @@ require('dotenv').config();
 passport.use(
     new LocalStrategy(async (username, password, done) => {
         try {
-            // const username = req.body.username;
             const user = await db.findUserByUsername(username);
-            // console.log('rows', rows)
-            // const user = rows[0];
-            console.log('user', user);
 
             if (!user) {
                 return done(null, false, { message: "Incorrect username" });
@@ -50,7 +46,6 @@ passport.deserializeUser(async (id, done) => {
 exports.userLogInGet = async (req, res, next) => {
     try {
         const message = req.session.messages || [];
-        console.log(req.session)
         // req.session.messages = [];
 
         res.render('log-in', {
@@ -81,7 +76,6 @@ exports.userLogout = async(req, res, next) => {
 exports.userSignUpGet = async (req, res, next) => {
     try {
         const message = req.session.messages || [];
-        console.log(req.session)
         // req.session.messages = [];
 
         res.render('sign-up', {
@@ -134,7 +128,7 @@ exports.userSignUpPost = [
                     res.render('sign-up', {
                         title: "Sign up",
                         errors: [{ msg: "The username is already in use."}],
-                        message: "The username is already in use"
+                        message: "The username is already in use",
                     })
                 }
             }
@@ -149,3 +143,29 @@ exports.userSignUpPost = [
                 }
         }
 ]
+
+exports.userJoinClubGet = (req, res, next) => {
+    res.render("join-club", {
+        title: "Join the Club",
+        user: req.user
+    })
+}
+
+exports.userJoinClubPost = async (req, res, next) => {
+    const userPasscode = req.body.passcode;
+    const userId = req.user.id
+    try {
+        if ( userPasscode === process.env.PASSCODE || PASSCODE ) {
+            await db.JoinClub(userId);
+            res.redirect('/');
+        } else {
+            res.render('join-club', {
+                title: "Join the Club",
+                user: req.user,
+                error: true,
+            });
+        }
+    } catch (err) {
+        console.log(err);
+    }
+}

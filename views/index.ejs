@@ -15,10 +15,10 @@
           <div class="message-info">
             <% if (!user) { %>
               <p class="message-author">Anonymous</p>
-            <% } else if (!user.isMember) { %>
+            <% } else if (!user.ismember) { %>
               <p class="message-author">Club Member</p>
             <% } else { %>
-              <a href="<%=message.author.url %>"><p class="message-author"><%= message.author.username %></p></a>
+              <p class="message-author"><%= message.username %></p>
             <% } %>
             <p><%= message.date_formatted %></p>
           </div>

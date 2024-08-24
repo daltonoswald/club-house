@@ -9,6 +9,9 @@ router.post('/log-in', userController.userLogInPost);
 router.get('/logout', userController.userLogout);
 
 router.get('/sign-up', userController.userSignUpGet);
-router.post('/sign-up', userController.userSignUpPost)
+router.post('/sign-up', userController.userSignUpPost);
+
+router.get('/join-club', userController.userJoinClubGet);
+router.post('/join-club', userController.userJoinClubPost);
 
 module.exports = router;

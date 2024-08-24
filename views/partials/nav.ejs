@@ -3,15 +3,15 @@
     <a href="/" class="button">Home</a>
     <% if (typeof user !== 'undefined') { %>
       <a href="/new-message" class="button">New Message</a>
-      <% if (!user.isMember) { %>
-        <a href="/join-club" class="button">Join the Club</a>
+      <% if (!user.ismember) { %>
+        <a href="/users/join-club" class="button">Join the Club</a>
       <% } %>
-      <% if (user.isMember && !user.isAdmin) { %>
-        <a href="/become-admin" class="button">Become an Admin</a>
+      <% if (user.ismember && !user.isadmin) { %>
+        <a href="/users/become-admin" class="button">Become an Admin</a>
       <% } %>
       </div>
       <div class="right">
-        <a href="<%=user.url %>"><p class="username"> <%= user.username %></p></a>
+        <a href="/users/<%=user.url %>"><p class="username"> <%= user.username %></p></a>
         <a href="/users/logout" class="button">Logout</a>
       </div>
     <% } else { %>

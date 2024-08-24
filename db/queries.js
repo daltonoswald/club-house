@@ -12,8 +12,14 @@ async function deserializeUser(id) {
 }
 
 async function getAllMessages() {
-    const { rows } = await pool.query('SELECT * FROM messages;');
+    // const { rows } = await pool.query('SELECT * FROM messages;');
+    const { rows } = await pool.query('SELECT messages.*, users.username FROM messages LEFT JOIN users ON messages.user_id = users.id');
+
     return rows;
+    // 'SELECT * FROM messages'
+    // 'INNER JOIN users'
+    // 'ON messages.user_id = users.id;'
+
 }
 
 async function createUser(first_name, last_name, username, password) {
@@ -25,9 +31,23 @@ async function createUser(first_name, last_name, username, password) {
     ]);
 }
 
+async function createPost(userId, title, text) {
+    await pool.query("INSERT INTO messages (user_id, title, text) VALUES ($1, $2, $3)", [
+        userId,
+        title,
+        text
+    ])
+}
+
+async function JoinClub(userId) {
+    await pool.query("UPDATE users SET isMember=true WHERE id = $1", [userId])
+}
+
 module.exports = {
     findUserByUsername,
     deserializeUser,
     getAllMessages,
-    createUser
+    createUser,
+    createPost,
+    JoinClub
 }
