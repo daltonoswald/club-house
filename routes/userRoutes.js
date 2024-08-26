@@ -14,4 +14,7 @@ router.post('/sign-up', userController.userSignUpPost);
 router.get('/join-club', userController.userJoinClubGet);
 router.post('/join-club', userController.userJoinClubPost);
 
+router.get('/become-admin', userController.userBecomeAdminGet);
+router.post('/become-admin', userController.userBecomeAdminPost);
+
 module.exports = router;

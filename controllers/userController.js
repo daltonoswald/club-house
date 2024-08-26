@@ -156,11 +156,37 @@ exports.userJoinClubPost = async (req, res, next) => {
     const userId = req.user.id
     try {
         if ( userPasscode === process.env.PASSCODE || PASSCODE ) {
-            await db.JoinClub(userId);
+            await db.joinClub(userId);
             res.redirect('/');
         } else {
             res.render('join-club', {
                 title: "Join the Club",
+                user: req.user,
+                error: true,
+            });
+        }
+    } catch (err) {
+        console.log(err);
+    }
+}
+
+exports.userBecomeAdminGet = (req, res, next) => {
+    res.render('become-admin', {
+        title: "Become an Admin", 
+            user: req.user
+    })
+};
+
+exports.userBecomeAdminPost = async (req, res, next) => {
+    const adminPasscode = req.body.adminCode;
+    const userId = req.user.id
+    try {
+        if ( adminPasscode === process.env.ADMINCODE || ADMINCODE ) {
+            await db.becomeAdmin(userId);
+            res.redirect('/')
+        } else {
+            res.render('become-admin', {
+                title: "Become an Admin",
                 user: req.user,
                 error: true,
             });

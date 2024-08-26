@@ -6,8 +6,6 @@ require('dotenv').config();
 
 exports.index = asyncHandler(async (req, res) => {
     const messages = await db.getAllMessages();
-    console.log(messages);
-
     res.render('index', { title: 'Club House', messages: messages, user: req.user })
 })
 
@@ -42,3 +40,26 @@ exports.newMessagePost = [
         }
     }
 ]
+
+exports.deleteMessageGet = async (req, res, next) => {
+    const messageId = req.params.id;
+    const messageToDelete = await db.getMessage(messageId)
+    console.log('messageId', messageId);
+    console.log('messageToDelete', messageToDelete);
+    res.render('delete-message', {
+        title: "Delete Message",
+        user: req.user,
+        message: messageToDelete,
+        userMessageId: req.params.id,
+    })
+}
+
+exports.deleteMessagePost = async (req, res, next) => {
+    try {
+        const messageId = req.params.id;
+        await db.deleteMessage(messageId);
+        res.redirect('/');
+    } catch (err) {
+        console.error(err);
+    }
+}

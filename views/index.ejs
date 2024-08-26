@@ -26,9 +26,9 @@
             <h3 class="message-title"><%= message.title %></h3>
             <p class="message-text"><%= message.text %></p>
           </div>
-          <% if (user && user.isAdmin) { %>
+          <% if (user && user.isadmin) { %>
             <div class="delete-button">
-              <a href="<%= '/delete-message/' + message._id %>" class="button">Delete</a>
+              <a href="<%= '/delete-message/' + message.id %>" class="button">Delete</a>
             </div>
         <% } %>
         </div>

@@ -39,8 +39,21 @@ async function createPost(userId, title, text) {
     ])
 }
 
-async function JoinClub(userId) {
+async function joinClub(userId) {
     await pool.query("UPDATE users SET isMember=true WHERE id = $1", [userId])
+}
+
+async function becomeAdmin(userId) {
+    await pool.query("UPDATE USERS SET isAdmin=true WHERE id = $1", [userId])
+}
+
+async function getMessage(messageId) {
+    const { rows } = await pool.query('SELECT messages.*, users.username FROM messages LEFT JOIN users ON messages.user_id = users.id WHERE messages.id = $1', [messageId]);
+    return rows[0];
+}
+
+async function deleteMessage(messageId) {
+    await pool.query('DELETE FROM messages WHERE id = $1', [messageId])
 }
 
 module.exports = {
@@ -49,5 +62,8 @@ module.exports = {
     getAllMessages,
     createUser,
     createPost,
-    JoinClub
+    joinClub,
+    becomeAdmin,
+    getMessage,
+    deleteMessage
 }
