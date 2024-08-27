@@ -145,10 +145,14 @@ exports.userSignUpPost = [
 ]
 
 exports.userJoinClubGet = (req, res, next) => {
-    res.render("join-club", {
-        title: "Join the Club",
-        user: req.user
-    })
+    if (req.user.ismember) {
+        res.redirect('/')
+    } else {
+        res.render("join-club", {
+            title: "Join the Club",
+            user: req.user
+        })
+    }
 }
 
 exports.userJoinClubPost = async (req, res, next) => {
@@ -171,10 +175,14 @@ exports.userJoinClubPost = async (req, res, next) => {
 }
 
 exports.userBecomeAdminGet = (req, res, next) => {
-    res.render('become-admin', {
-        title: "Become an Admin", 
-            user: req.user
-    })
+    if (req.user.isadmin) {
+        res.redirect('/')
+    } else {
+        res.render('become-admin', {
+            title: "Become an Admin", 
+                user: req.user
+        })
+    }
 };
 
 exports.userBecomeAdminPost = async (req, res, next) => {
@@ -194,4 +202,15 @@ exports.userBecomeAdminPost = async (req, res, next) => {
     } catch (err) {
         console.log(err);
     }
+}
+
+exports.userProfileGet = async (req, res, next) => {
+    // const userId = req.user.id;
+    const userId = req.params.userid;
+    const messages = await db.getAllMessagesFromUser(userId);
+    res.render('user-profile', {
+        title: `${messages[0].username}'s Profile`,
+        user: req.user,
+        messages: messages
+    })
 }

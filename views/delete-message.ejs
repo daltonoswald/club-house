@@ -13,8 +13,8 @@
           <p class="message-author"><%= message.username %></p> 
           <p><%= message.date_formatted %></p>
           <div class="message-content">
-            <h3 class="message-title"><%= message.title %></h3>
-            <p class="message-text"><%= message.text %></p>
+            <h3 class="message-title"><%- message.title %></h3>
+            <p class="message-text"><%- message.text %></p>
           </div>
         </div>
           <form class="delete-message-form" action="<%= '/delete-message/' + userMessageId %>" method="POST">

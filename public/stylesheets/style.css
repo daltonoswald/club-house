@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
 body {
   /* font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; */
   font: 14px "Roboto";
@@ -119,6 +121,13 @@ align-items: center;
 .delete-message-button {
   display: flex;
   gap: 2vw;
+  align-items: center;
+}
+
+.delete-message-button > .button,
+.new-message-button > .button {
+  height: 100% !important;
+  width: 5em !important;
 }
 
 .back {

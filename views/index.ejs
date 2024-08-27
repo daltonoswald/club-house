@@ -18,13 +18,13 @@
             <% } else if (!user.ismember) { %>
               <p class="message-author">Club Member</p>
             <% } else { %>
-              <p class="message-author"><%= message.username %></p>
+              <a href="/users/profile/<%=message.user_id %>"><p class="message-author"><%= message.username %></p></a>
             <% } %>
             <p><%= message.date_formatted %></p>
           </div>
           <div class="message-content">
-            <h3 class="message-title"><%= message.title %></h3>
-            <p class="message-text"><%= message.text %></p>
+            <h3 class="message-title"><%- message.title %></h3>
+            <p class="message-text"><%- message.text %></p>
           </div>
           <% if (user && user.isadmin) { %>
             <div class="delete-button">

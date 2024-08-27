@@ -56,6 +56,11 @@ async function deleteMessage(messageId) {
     await pool.query('DELETE FROM messages WHERE id = $1', [messageId])
 }
 
+async function getAllMessagesFromUser(userId) {
+    const { rows } = await pool.query('SELECT messages.*, users.username FROM messages LEFT JOIN users ON messages.user_id = users.id WHERE user_id = $1', [userId]);
+    return rows;
+}
+
 module.exports = {
     findUserByUsername,
     deserializeUser,
@@ -65,5 +70,6 @@ module.exports = {
     joinClub,
     becomeAdmin,
     getMessage,
-    deleteMessage
+    deleteMessage,
+    getAllMessagesFromUser
 }

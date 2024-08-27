@@ -1,20 +1,23 @@
 const express = require('express');
-// const indexController = require('../controllers/indexController');
 const userController = require('../controllers/userController');
+const isSignedIn = require('../middleware').isSignedIn;
+const alreadySignedIn = require('../middleware').alreadySignedIn;
 
 const router = express.Router();
 
-router.get('/log-in', userController.userLogInGet);
-router.post('/log-in', userController.userLogInPost);
+router.get('/log-in', alreadySignedIn, userController.userLogInGet);
+router.post('/log-in', alreadySignedIn, userController.userLogInPost);
 router.get('/logout', userController.userLogout);
 
-router.get('/sign-up', userController.userSignUpGet);
-router.post('/sign-up', userController.userSignUpPost);
+router.get('/sign-up', alreadySignedIn, userController.userSignUpGet);
+router.post('/sign-up', alreadySignedIn, userController.userSignUpPost);
 
-router.get('/join-club', userController.userJoinClubGet);
-router.post('/join-club', userController.userJoinClubPost);
+router.get('/join-club', isSignedIn, userController.userJoinClubGet);
+router.post('/join-club', isSignedIn, userController.userJoinClubPost);
 
-router.get('/become-admin', userController.userBecomeAdminGet);
-router.post('/become-admin', userController.userBecomeAdminPost);
+router.get('/become-admin', isSignedIn, userController.userBecomeAdminGet);
+router.post('/become-admin', isSignedIn, userController.userBecomeAdminPost);
+
+router.get('/profile/:userid', isSignedIn, userController.userProfileGet);
 
 module.exports = router;
