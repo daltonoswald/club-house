@@ -37,7 +37,7 @@ const SQL = `
 async function main() {
     console.log('seeding...');
     const client = new Client({
-        connectionString: process.env.CONNECTION_STRING || CONNECTIONSTRING
+        connectionString: process.env.CONNECTION_STRING || CONNECTION_STRING
     });
     await client.connect();
     await client.query(SQL);
