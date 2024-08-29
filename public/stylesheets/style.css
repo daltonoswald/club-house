@@ -4,8 +4,8 @@ body {
   /* font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; */
   font: 14px "Roboto";
   margin: 0;
-  background-color: #f1f6f8;
-  color: #21273d
+  background-color: hwb(211deg 73% 5% / 10%);
+  color: #21273d;
 }
 
 a {
@@ -71,6 +71,7 @@ a {
   border: 2px solid black;
   padding: 1vh 1vw;
   margin-top: 2vh;
+  margin-bottom: 2vh;
   border-radius: 16px;
 }
 
