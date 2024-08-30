@@ -32,7 +32,6 @@ exports.newMessagePost = [
             
             const userId = req.user.id
             const { title, text } = req.body
-            console.log("req.user in newMessagePost:", req.user)
             await db.createPost(userId, title, text);
             res.redirect('/');
         } catch (err) {
@@ -44,8 +43,6 @@ exports.newMessagePost = [
 exports.deleteMessageGet = async (req, res, next) => {
     const messageId = req.params.id;
     const messageToDelete = await db.getMessage(messageId)
-    console.log('messageId', messageId);
-    console.log('messageToDelete', messageToDelete);
     res.render('delete-message', {
         title: "Delete Message",
         user: req.user,

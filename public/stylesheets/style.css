@@ -13,12 +13,18 @@ a {
   text-decoration: none;
 }
 
-.nav {
+.nav,
+.footer {
+  height: 4vh;
   padding: 1vh 5vw;
   background-color: #b9d4f1;
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.nav {
+  border-bottom: 2px solid black;
 }
 
 .left {
@@ -65,6 +71,7 @@ a {
 
 .main {
   margin: 0 5vw;
+  min-height: 92vh;
 }
 
 .message {
@@ -157,4 +164,37 @@ input {
 .delete-button > button {
   width: 4em;
   padding: .5em;
+}
+
+.footer {
+  border-top: 2px solid black;
+}
+
+.footer-odin {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.footer-links {
+  display: flex;
+  gap: 8px;
+}
+
+.icon {
+  height: 25px;
+}
+
+.footer-links > a > .icon:hover {
+  transition: 0.9s;
+  transform: rotateZ(360deg);
+}
+
+.footer-text {
+  display: flex;
+  gap: 8px;
+}
+
+.footer-text > p {
+  margin: 0;
 }
