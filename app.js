@@ -29,5 +29,5 @@ app.use(express.static(assetsPath));
 app.set('views', path.join(__dirname, "views"));
 app.set('view engine', 'ejs');
 
-const PORT = 3000;
+const PORT = process.env.PORT || PORT;
 app.listen(PORT, () => console.log(`Club House listening on port ${PORT}`));
