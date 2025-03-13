@@ -12,7 +12,7 @@ async function deserializeUser(id) {
 }
 
 async function getAllMessages() {
-    const { rows } = await pool.query('SELECT messages.*, users.username FROM messages LEFT JOIN users ON messages.user_id = users.id;');
+    const { rows } = await pool.query('SELECT messages.*, users.username FROM messages LEFT JOIN users ON messages.user_id = users.id ORDER BY messages.posted_at DESC;');
     return rows;
 
 }
